@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "7fb42db9-1d03-438f-9c57-10833a57faff",
+		"name": "SHOP4CF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE",
+			"item": [
+				{
+					"name": "Create Task Entity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\":\"urn:ngsi-ld:Task:siemens:e05c4-test2-6f0e-1e8-9c79-583\",\r\n\t\"type\":\"Task\",\r\n\t\"isDefinedBy\":{\r\n\t\t\"type\":\"Relationship\",\r\n\t\t\"object\":\"urn:ngsi-ld:TaskDefinition:siemens:RTTC\"\r\n\t},\r\n\t\"involves\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":[\r\n{\r\n\t\t\t\t\"type\":\"Relationship\",\r\n\t\t\t\t\"object\":\"urn:ngsi-ld:Device:siemens:glove-1\"\r\n\t\t\t}\r\n\t\t]\r\n\t},\r\n\t\"workParameters\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":{\r\n\t\t\t\"command_type\":\"A\"\r\n\t\t}\r\n\t},\r\n\t\"status\":{\r\n\t\t\"value\":\"pending\",\r\n\t\t\"type\":\"Property\",\r\n\t\t\"observedAt\":\"2020-12-01T11:23:19Z\"\r\n\t\t\r\n\t},\r\n\t\"outputParameters\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":{\r\n\t\t\t\"??\":0,\r\n\t\t\t\"percentageCompleted\":0\r\n\t\t},\r\n\t\t\"observedAt\":\"2020-12-01T11:23:19Z\"\r\n\t},\r\n\t\"@context\":[\r\n        \"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld\",\r\n        \"https://smartdatamodels.org/context.jsonld\"\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task Entity other entity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\":\"urn:ngsi-ld:Task:siemens:e05c4-test4-6f0e-1e8-9c79-583\",\r\n\t\"type\":\"Task\",\r\n\t\"isDefinedBy\":{\r\n\t\t\"type\":\"Relationship\",\r\n\t\t\"object\":\"urn:ngsi-ld:TaskDefinition:siemens:FC\"\r\n\t},\r\n\t\"involves\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":[\r\n{\r\n\t\t\t\t\"type\":\"Relationship\",\r\n\t\t\t\t\"object\":\"urn:ngsi-ld:Device:siemens:glove-1\"\r\n\t\t\t}\r\n\t\t]\r\n\t},\r\n\t\"workParameters\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":{\r\n\t\t\t\"command_type\":\"A\"\r\n\t\t}\r\n\t},\r\n\t\"status\":{\r\n\t\t\"value\":\"pending\",\r\n\t\t\"type\":\"Property\",\r\n\t\t\"observedAt\":\"2020-12-01T11:23:19Z\"\r\n\t\t\r\n\t},\r\n\t\"outputParameters\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":{\r\n\t\t\t\"??\":0,\r\n\t\t\t\"percentageCompleted\":0\r\n\t\t},\r\n\t\t\"observedAt\":\"2020-12-01T11:23:19Z\"\r\n\t},\r\n\t\"@context\":[\r\n        \"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld\",\r\n        \"https://smartdatamodels.org/context.jsonld\"\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task Entity Multiple Involves",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\":\"urn:ngsi-ld:Task:siemens:e05c4-test1-6f0e-1e8-9c79-583\",\r\n\t\"type\":\"Task\",\r\n\t\"isDefinedBy\":{\r\n\t\t\"type\":\"Relationship\",\r\n\t\t\"object\":\"urn:ngsi-ld:TaskDefinition:siemens:RTTC\"\r\n\t},\r\n\t\"involves\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":[\r\n\t\t\t{\r\n\t\t\t\t\"type\":\"Relationship\",\r\n\t\t\t\t\"object\":\"urn:ngsi-ld:Device:siemens:glove-1\"\r\n\t\t\t}\r\n\t\t]\r\n\t},\r\n\t\"workParameters\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":{\r\n\t\t\t\"command_type\":\"A\"\r\n\t\t}\r\n\t},\r\n\t\"status\":{\r\n\t\t\"value\":\"pending\",\r\n\t\t\"type\":\"Property\",\r\n\t\t\"observedAt\":\"2020-12-01T11:23:19Z\"\r\n\t\t\r\n\t},\r\n\t\"outputParameters\":{\r\n\t\t\"type\":\"Property\",\r\n\t\t\"value\":{\r\n\t\t\t\"??\":0,\r\n\t\t\t\"percentageCompleted\":0\r\n\t\t},\r\n\t\t\"observedAt\":\"2020-12-01T11:23:19Z\"\r\n\t},\r\n\t\"@context\":[\r\n        \"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld\",\r\n        \"https://smartdatamodels.org/context.jsonld\"\r\n\t]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "READ",
+			"item": [
+				{
+					"name": "Get all Task Entities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/subscriptions/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"subscriptions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/?type=Task",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Task"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Device Entities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Link",
+								"value": "<https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld> ; rel=\"http://www.w3.org/ns/json-ld#context\"; type=\"application/ld+json\"', 'Accept':'application/json",
+								"type": "text"
+							},
+							{
+								"key": "Link",
+								"value": "<https://smartdatamodels.org/context.jsonld> ; rel=\"http://www.w3.org/ns/json-ld#context\"; type=\"application/ld+json\"', 'Accept':'application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/?type=Device",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Device"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Link",
+								"value": "<https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld> ; rel=\"http://www.w3.org/ns/json-ld#context\"; type=\"application/ld+json\"', 'Accept':'application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/?type=Device",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Device"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UPDATE",
+			"item": [
+				{
+					"name": "Update Task Entity status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\":\"urn:ngsi-ld:Task:siemens:e05c4-test1-6f0e-1e8-9c79-583\",\r\n        \"type\":\"Task\",\r\n        \"status\": {\r\n            \"value\":\"completed\",\r\n            \"type\":\"Property\",\r\n            \"observedAt\":\"2020-12-01T11:23:19Z\"\r\n        },\r\n        \"@context\": [\r\n            \"https://smartdatamodels.org/context.jsonld\",\r\n            \"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld\"\r\n        ]\r\n    }\r\n]\r\n"
+						},
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entityOperations/update?options=update",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entityOperations",
+								"update"
+							],
+							"query": [
+								{
+									"key": "options",
+									"value": "update"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Device Entity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\":\"urn:ngsi-ld:Task:siemens:e05c4-test1-6f0e-1e8-9c79-583\",\r\n        \"type\":\"Task\",\r\n        \"status\": {\r\n            \"value\":\"completed\",\r\n            \"type\":\"Property\",\r\n            \"observedAt\":\"2020-12-01T11:23:19Z\"\r\n        },\r\n        \"@context\": [\r\n            \"https://smartdatamodels.org/context.jsonld\",\r\n            \"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld\"\r\n        ]\r\n    }\r\n]\r\n"
+						},
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entityOperations/update?options=update",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entityOperations",
+								"update"
+							],
+							"query": [
+								{
+									"key": "options",
+									"value": "update"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "Delete Task Entity",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/urn:ngsi-ld:Task:company-xyz:im834wyoen78w38",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								"urn:ngsi-ld:Task:company-xyz:im834wyoen78w38"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Subscription",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/ngsi-ld/v1/entities/urn:ngsi-ld:Task:company-xyz:im834wyoen78w38",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"ngsi-ld",
+								"v1",
+								"entities",
+								"urn:ngsi-ld:Task:company-xyz:im834wyoen78w38"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

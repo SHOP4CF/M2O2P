@@ -1,0 +1,162 @@
+{
+	"config_ac":{
+		"gloves_connected":1,
+		"gesture_list":[
+			[[0,2,2,2,2],[],"Thumbs up"],
+			[[2,0,2,2,0],[],"Horns"],
+			[[2,2,2,2,0],[],"Pinky straight"],
+			[[2,0,2,2,2],[],"Point with index"],
+			[[0,0,2,2,2],[],"Thumb and index straight"],
+			[[0,2,2,2,0],[],"Thumb and pinky straight"],
+			[[2,2,0,2,2],[],"Middle straight"],
+			[[2,2,0,2,0],[],"Middle and pinky straight"],
+			[[2,0,0,2,2],[],"Index and middle straight"],
+			[[2,2,2,0,0],[],"Ring and pinky straight"],
+			[[2,0,2,0,0],[],"Index, ring and pinky straight"],
+			[[2,2,0,0,0],[],"Middle, ring and pinky straight"],
+			[[2,0,0,2,0],[],"Index, middle and pinky straight"],
+			[[2,0,0,0,2],[],"Index, middle and ring straight"],
+			[[2,2,0,0,2],[],"Middle and ring straight"],
+			[[2,0,2,0,2],[],"Index and ring straight"],
+			[[2,2,2,0,2],[],"Ring straight"],
+			[[0,0,2,2,0],[],"Thumb, index and pinky straight"],
+			[[0,0,0,2,0],[],"Thumb, index, middle and pinky straight"],
+			[[0,2,0,2,0],[],"Thumb, middle and pinky straight"],
+			[[0,0,0,2,2],[],"Thumb, index and middle straight"]
+		],
+		"command_map":[
+			{"command_index":1,"gesture":"Horns"},
+			{"command_index":2,"gesture":"Index, middle and pinky straight"},
+			{"command_index":3,"gesture":"Thumb, index and middle straight"},
+			{"command_index":4,"gesture":"Thumb, index, middle and pinky straight"},
+			{"command_index":5,"gesture":"Middle and ring straight"},
+			{"command_index":6,"gesture":"Ring and pinky straight"},
+			{"command_index":7,"gesture":"Thumb and pinky straight"},
+			{"command_index":8,"gesture":"Index and ring straight"},
+			{"command_index":9,"gesture":"Middle straight"},
+			{"command_index":10,"gesture":"Pinky straight"},
+			{"command_index":11,"gesture":"Index, ring and pinky straight"},
+			{"command_index":12,"gesture":"Middle and pinky straight"}	
+		],
+		"postgres":{
+			"host":"postgres",
+			"database":"postgres-db",
+			"user":"postgres",
+			"password":"password",
+			"self_deploy":1
+		},
+		"query":{
+			"SELECT":"task_name, command_id",
+			"FROM":"TaskDef",
+			"WHERE":"task_code"
+		}
+	},
+	
+	"config_bridge":{
+		"self_deploy_device":1,
+		"orion_url":"http://orion:1026/",
+		"device_entity":{
+			"id":"urn:ngsi-ld:Device:siemens:glove-1",
+			"type":"Device",
+			"controlledProperty":{
+				"type":"Property",
+				"value":["commandId"]
+			},
+			"deviceState":{
+				"type":"Property",
+				"value":"shutdown"
+			},
+			"commandId":{
+				"type":"Property",
+				"value":0,
+				"observedAt":"2020-12-01T11:23:19Z"
+			},
+			"@context": [
+				"https://smartdatamodels.org/context.jsonld",
+				"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld"
+			]	
+		},
+		"update_status":{
+			"id":"",
+			"type":"Task",
+			"status":{"value":"","type":"Property","observedAt":""},
+			"@context":[
+				"https://smartdatamodels.org/context.jsonld",
+				"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld"
+			]
+		},
+		"update_device_state":{
+			"id":"urn:ngsi-ld:Device:siemens:glove-1",
+			"type":"Device",
+			"deviceState":{"value":"","type":"Property"},
+			"@context":[
+				"https://smartdatamodels.org/context.jsonld",
+				"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld"
+			]
+		},
+		"update_command_id":{
+			"id":"urn:ngsi-ld:Device:siemens:glove-1",
+			"type":"Device",
+			"commandId":{"value":"","type":"Property","observedAt":""},
+			"@context":[
+				"https://smartdatamodels.org/context.jsonld",
+				"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld"
+			]
+		},
+		"subscription_entities":[
+			{
+				"id":"urn:ngsi-ld:Subscription:m2o2psubscription-task",
+				"description":"Send notification to M2O2P when new task is created which considers M2O2P",
+				"type":"Subscription",
+				"entities": [
+					{"type":"Task", "idPattern":".*"}
+				],
+				"watchedAttributes":["isDefinedBy"],
+				"q":"involves.object==urn:ngsi-ld:Device:siemens:glove-1",
+				"notification":{
+					"attributes":[
+						"id",
+						"involves", 
+						"isDefinedBy",
+						"status"
+					],
+					"format":"keyValues",
+					"endpoint":{
+						"uri":"http://ros2-fiware-bridge:54100",
+						"accept":"application/json"
+					}
+				},
+				"@context":[
+					"https://smartdatamodels.org/context.jsonld",
+					"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld"
+				]
+			},
+			{
+				"id":"urn:ngsi-ld:Subscription:m2o2psubscription-status",
+				"description":"Send notification M2O2P when status is updated",
+				"type":"Subscription",
+				"entities": [
+					{"type":"Task", "idPattern":".*"}
+				],
+				"watchedAttributes":["status"],
+				"q":"status==completed",
+				"notification":{
+					"attributes":[
+						"id",
+						"status"
+					],
+					"format":"keyValues",
+					"endpoint":{
+						"uri":"http://ros2-fiware-bridge:54100",
+						"accept":"application/json"
+					}
+				},
+				"@context":[
+					"https://smartdatamodels.org/context.jsonld",
+					"https://raw.githubusercontent.com/shop4cf/data-models/master/docs/shop4cfcontext.jsonld"
+				]
+			
+			}
+		]
+	}
+}

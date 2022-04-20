@@ -1,0 +1,13 @@
+systems:
+    ros2: { type: ros2 }
+    ros1: { type: ros1 }
+
+routes:
+    ros2_to_ros1: { from: ros2, to: ros1 }
+
+topics:
+    command_id: { type: "std_msgs/String", route: ros2_to_ros1, ros1 : { queue_size: 10, latch: false } }
+    finger_sensor_values_left: { type: "std_msgs/Float32MultiArray", route: ros2_to_ros1, ros1 : { queue_size: 10, latch: false } }
+    finger_sensor_values_right: { type: "std_msgs/Float32MultiArray", route: ros2_to_ros1, ros1 : { queue_size: 10, latch: false } }
+    finger_states_left: { type: "std_msgs/Int32MultiArray", route: ros2_to_ros1, ros1 : { queue_size: 10, latch: false } }
+    finger_states_right: { type: "std_msgs/Int32MultiArray", route: ros2_to_ros1, ros1 : { queue_size: 10, latch: false } }

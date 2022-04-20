@@ -1,0 +1,74 @@
+version: '3.9'
+services:     
+    postgres:
+        image: postgres
+        container_name: postgres
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: postgres-db
+    
+    mongo:
+        image: mongo:3.2
+        command: --nojournal
+        container_name: mongo
+    
+    orion:
+        #image: fiware/orion-ld:0.8.0
+        image: fiware/orion-ld:latest
+        links:
+            - mongo
+        ports:
+            - "57000:1026"
+        command: -dbhost mongo -logLevel DEBUG -logForHumans
+        container_name: orion
+        expose:
+            - "1026"
+
+    integration-service:
+        image: m2o2p-integration-service:rc
+        container_name: integration-service
+        depends_on:
+        - "ac"
+        stdin_open: true
+        tty: true
+        volumes:
+            - /c/Users/xtsara/Documents/workspaces/GLOVEv3/ros2_ros1_command.yaml:/home/is-workspace/src/ros2_ros1_command.yaml
+    
+    ros2-fiware-bridge:
+        image: m2o2p-ros2-fiware-bridge:1.0.0
+        container_name: ros2-fiware-bridge
+        expose:
+            - "54100"
+        ports: 
+        - "54100:54100"
+        depends_on:
+        - "ac"
+        stdin_open: true
+        tty: true
+        volumes:
+            - /c/Users/xtsara/Documents/workspaces/GLOVEv3/configuration.json:/home/ros2_ws/configuration.json
+    
+    ac:
+        image: m2o2p-ac:1.0.1
+        depends_on:
+        - "postgres"
+        ports: 
+        - "54000:54000"
+        container_name: ac
+        stdin_open: true
+        tty: true
+        environment:
+        - PYTHONUNBUFFERED=1
+        volumes:
+            - /c/Users/xtsara/Documents/workspaces/GLOVEv3/original_limits.txt:/home/ros2_ws/src/ac/src/text_files/original_limits.txt
+            - /c/Users/xtsara/Documents/workspaces/GLOVEv3/configuration.json:/home/ros2_ws/src/ac/src/text_files/configuration.json
+    
+    webapp:
+        image: m2o2p-webapp:1.0.0
+        ports:
+            - "54400:54400"
+        container_name: webapp
+        depends_on:
+        - "ac"
+        stdin_open: true
